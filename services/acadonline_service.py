@@ -22,6 +22,11 @@ def authenticate(data):
 
 
 def get_perfil(token):
+    grade_page = requests.get(
+        endpoints.acadonline.grades,
+        headers=_get_headers(token)
+    )
+
     perfil_page = requests.get(
         endpoints.acadonline.perfil_get,
         headers=_get_headers(token)
