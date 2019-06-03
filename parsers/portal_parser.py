@@ -51,7 +51,7 @@ def parse_news_items(final_page, final_date, initial_page=None, initial_date=Non
 
         if initial_page is not None and initial_date is not None:
             initial_news = search_news(initial_page)
-            print(initial_date)
+
             initial_news = [new for new in initial_news["news"] if final_date >= new["date"] > initial_date]
 
             news = news + initial_news

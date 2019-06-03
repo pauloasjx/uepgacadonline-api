@@ -5,20 +5,18 @@ from parsers import acadonline_parser
 
 
 def authenticate(data):
-    fields = [
-        "login",
-        "password"
-    ]
+    user = {
+        'j_username': data['login'],
+        'j_password': data['password']
+    }
 
-    user = {field: data[field] for field in fields}
-
-    headers, token = _get_cookies(requests.get(endpoints.acadonline.home))
-
-    requests.post(
+    session = requests.Session()
+    session.post(
         endpoints.acadonline.auth,
         user,
-        headers=headers
     )
+
+    token = session.cookies.get_dict()['JSESSIONID']
 
     return token
 

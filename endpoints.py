@@ -2,7 +2,7 @@ from utils.map import Map
 
 acadonline = Map({
     "home": "https://sistemas.uepg.br/academicoonline/login/index",
-    "auth": "https://sistemas.uepg.br/academicoonline/login/authenticate",
+    "auth": "https://sistemas.uepg.br/academicoonline/j_spring_security_check",
     "grades": "https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index",
     "password": "https://sistemas.uepg.br/academicoonline/academico/index",
     "perfil_get": "https://sistemas.uepg.br/academicoonline/academico_pessoa/show",
