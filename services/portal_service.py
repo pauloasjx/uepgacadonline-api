@@ -1,6 +1,7 @@
 import requests
 
 import endpoints
+from headers import headers
 
 from parsers.portal_parser import parse_news, parse_featured, \
     parse_daily_news_items, parse_weekly_news_items, parse_news_items
@@ -35,8 +36,8 @@ def news_items(initial_date, final_date):
     initial_params = {"ano": initial_date.year, "mes": initial_date.month}
     final_params = {"ano": final_date.year, "mes": final_date.month}
 
-    initial_news_items_page = requests.post(endpoints.portal.news_item, initial_params, verify=False)
-    final_news_items_page = requests.post(endpoints.portal.news_item, final_params, verify=False)
+    initial_news_items_page = requests.post(endpoints.portal.news_item, initial_params, headers=headers)
+    final_news_items_page = requests.post(endpoints.portal.news_item, final_params, headers=headers)
 
     _news_items = parse_news_items(final_news_items_page, final_date, initial_news_items_page, initial_date)
 
