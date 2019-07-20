@@ -1,12 +1,13 @@
 from flask import Blueprint
 from flask_socketio import emit
 
-from server import socketio, db
+from database import db
+from wsocket import socketio
 
 chat_blueprint = Blueprint("chat", __name__, url_prefix="/chat")
 
 
-@socketio.on('message', namespace='/chat')
+@socketio.on('message')
 def message(json):
     user = db.get(json['token'])
 

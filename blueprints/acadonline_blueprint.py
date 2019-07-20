@@ -1,8 +1,8 @@
 from flask import Blueprint, request, make_response
 
 from cache import cache
+from database import db
 from repositories import portal_repository, acadonline_repository
-from server import db
 
 from utils.response import success, error, conditional_response
 
