@@ -1,8 +1,8 @@
 from flask import Blueprint
 from flask_socketio import emit
 
+from blueprints import socketio
 from database import db
-from wsocket import socketio
 
 chat_blueprint = Blueprint("chat", __name__, url_prefix="/chat")
 
