@@ -2,6 +2,7 @@ from flask import Blueprint, request, make_response
 
 from cache import cache
 from database import db
+from models.user import User
 from repositories import portal_repository, acadonline_repository
 
 from utils.response import success, error, conditional_response
@@ -20,10 +21,20 @@ def authenticate():
 
     perfil = acadonline_repository.get_perfil(token)
 
-    db.set(token, {
-        'complete_name': perfil['complete_name'],
-        'academic_register': perfil['academic_register']
-    })
+    user = User.query.filter_by(ra=login).first()
+
+    if user is None:
+        user = User(
+            token=token,
+            user=perfil['complete_name'],
+            ra=perfil['academic_register']
+        )
+
+        db.session.add(user)
+    else:
+        user.token = token
+
+    db.session.commit()
 
     response = make_response(success(message="Login realizado com sucesso", perfil=perfil, token=token))
     response.headers["x-api-token"] = token

@@ -1,3 +1,3 @@
-import pickledb
+from flask_sqlalchemy import SQLAlchemy
 
-db = pickledb.load('temp.db', False)
+db = SQLAlchemy()
