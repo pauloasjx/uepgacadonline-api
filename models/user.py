@@ -10,5 +10,5 @@ from database import db
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     token = db.Column(db.Text, nullable=False)
-    user = db.Column(db.Text, nullable=False)
-    ra = db.Column(db.Text, nullable=False)
+    name = db.Column(db.Text, nullable=False)
+    academic_register = db.Column(db.Text, nullable=False)

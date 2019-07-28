@@ -21,13 +21,20 @@ def authenticate():
 
     perfil = acadonline_repository.get_perfil(token)
 
-    user = User.query.filter_by(ra=login).first()
+    user = User.query.filter_by(academic_register=login).first()
+
+    name = " ".join(
+        [
+            perfil['complete_name'].split()[0],
+            perfil['complete_name'].split()[-1]
+        ]
+    ) if len(perfil['complete_name'].split()) > 2 else perfil['complete_name']
 
     if user is None:
         user = User(
             token=token,
-            user=perfil['complete_name'],
-            ra=perfil['academic_register']
+            name=name,
+            academic_register=perfil['academic_register']
         )
 
         db.session.add(user)
